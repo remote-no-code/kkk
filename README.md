@@ -1,6 +1,3 @@
-Based on your existing README for SiliconSight and industry best practices, here's a comprehensive, professional-grade README with an integrated virtual environment setup section: [purpletutor](https://purpletutor.com/python-virtual-environment-best-practices/)
-
-```markdown
 # SiliconSight
 **Autonomous Semiconductor Wafer Defect Detection using Vision Transformers**
 
@@ -95,7 +92,7 @@ To ensure dependency isolation and reproducibility, this project should be run i
 ```bash
 git clone https://github.com/yourusername/siliconsight.git
 cd siliconsight
-```
+
 
 #### Step 2: Create a Virtual Environment
 
