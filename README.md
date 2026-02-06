@@ -9,13 +9,13 @@
 
 ## Overview
 
-**SiliconSight** is an autonomous computer vision system for **binary defect classification** in semiconductor wafer manufacturing [file:1].
+**SiliconSight** is an autonomous computer vision system for **binary defect classification** in semiconductor wafer manufacturing  .
 
-The system performs wafer-level **PASS / REJECT** decisions by analyzing **wafer map representations**, a critical quality-control step in modern fabrication pipelines [file:1]. The primary objective is **zero missed defects (false negatives)** under strict industrial constraints [file:1].
+The system performs wafer-level **PASS / REJECT** decisions by analyzing **wafer map representations**, a critical quality-control step in modern fabrication pipelines  . The primary objective is **zero missed defects (false negatives)** under strict industrial constraints  .
 
-Instead of traditional CNN-based approaches, SiliconSight leverages **Self-Supervised Vision Transformers (ViT)**—specifically **Meta's DINOv2**—to capture **global, non-linear spatial defect patterns** (rings, clusters, arcs, edge defects) that CNNs often struggle to model [file:1].
+Instead of traditional CNN-based approaches, SiliconSight leverages **Self-Supervised Vision Transformers (ViT)**—specifically **Meta's DINOv2**—to capture **global, non-linear spatial defect patterns** (rings, clusters, arcs, edge defects) that CNNs often struggle to model  .
 
-This repository demonstrates a **production-oriented, end-to-end ML lifecycle**, including [file:1]:
+This repository demonstrates a **production-oriented, end-to-end ML lifecycle**, including  :
 
 - Domain-aware preprocessing  
 - Extreme class-imbalance handling  
@@ -24,7 +24,7 @@ This repository demonstrates a **production-oriented, end-to-end ML lifecycle**,
 - Robustness stress testing  
 - Near real-time inference simulation  
 
-All experiments are optimized for **Apple Silicon (MPS)** and **NVIDIA CUDA** hardware [file:1].
+All experiments are optimized for **Apple Silicon (MPS)** and **NVIDIA CUDA** hardware  .
 
 ---
 
@@ -50,32 +50,32 @@ All experiments are optimized for **Apple Silicon (MPS)** and **NVIDIA CUDA** ha
 
 ## Objective
 
-Autonomous **binary classification** of semiconductor wafers [file:1]:
+Autonomous **binary classification** of semiconductor wafers  :
 
 - **Clean (PASS)**
 - **Defected (REJECT)**
 
-with **zero tolerance for false negatives** [file:1].
+with **zero tolerance for false negatives**  .
 
 ---
 
 ## Features
 
-- ✅ **Vision Transformer backbone** (DINOv2) for global pattern recognition
-- ✅ **100% accuracy** on balanced test set with perfect recall
-- ✅ **~29ms inference latency** (~34 FPS) on Apple M4 MacBook Air
-- ✅ **Robustness to Gaussian noise** (>99% accuracy up to σ ≈ 0.1–0.2)
-- ✅ **Production-ready demo** with live wafer streaming simulation
-- ✅ **Hardware acceleration** via MPS (Apple Silicon) and CUDA (NVIDIA)
+- **Vision Transformer backbone** (DINOv2) for global pattern recognition
+- **100% accuracy** on balanced test set with perfect recall
+- **~29ms inference latency** (~34 FPS) on Apple M4 MacBook Air
+- **Robustness to Gaussian noise** (>99% accuracy up to σ ≈ 0.1–0.2)
+- **Production-ready demo** with live wafer streaming simulation
+- **Hardware acceleration** via MPS (Apple Silicon) and CUDA (NVIDIA)
 
 ---
 
 ## Prerequisites
 
-- **Python**: 3.9 or higher [web:4]
+- **Python**: 3.9 or higher  
 - **Hardware**: 
-  - Apple Silicon Mac (automatically uses MPS acceleration) [file:1]
-  - NVIDIA GPU with CUDA support (optional) [file:1]
+  - Apple Silicon Mac (automatically uses MPS acceleration)  
+  - NVIDIA GPU with CUDA support (optional)  
   - CPU fallback available
 - **Operating System**: macOS, Linux, or Windows
 
@@ -83,9 +83,9 @@ with **zero tolerance for false negatives** [file:1].
 
 ## Installation
 
-### 🧪 Virtual Environment Setup (Recommended)
+### Virtual Environment Setup (Recommended)
 
-To ensure dependency isolation and reproducibility, this project should be run inside a Python virtual environment [web:2][web:4]. Creating a virtual environment prevents conflicts with system-wide packages and guarantees consistent behavior across machines [web:4].
+To ensure dependency isolation and reproducibility, this project should be run inside a Python virtual environment   . Creating a virtual environment prevents conflicts with system-wide packages and guarantees consistent behavior across machines  .
 
 #### Step 1: Clone the Repository
 
@@ -123,7 +123,7 @@ venv\Scripts\Activate.ps1
 venv\Scripts\activate.bat
 ```
 
-After activation, your terminal prompt should display `(venv)` [web:4].
+After activation, your terminal prompt should display `(venv)`  .
 
 #### Step 4: Upgrade pip and Install Dependencies
 
@@ -138,7 +138,7 @@ pip install -r requirements.txt
 python -c "import torch; print(f'PyTorch {torch.__version__}'); print(f'CUDA available: {torch.cuda.is_available()}'); print(f'MPS available: {torch.backends.mps.is_available()}')"
 ```
 
-If this runs without errors and displays hardware acceleration status, the environment is set up correctly [web:4].
+If this runs without errors and displays hardware acceleration status, the environment is set up correctly  .
 
 #### Step 6: Deactivate the Environment (When Done)
 
@@ -146,11 +146,11 @@ If this runs without errors and displays hardware acceleration status, the envir
 deactivate
 ```
 
-> **📌 Important Notes:**
-> - Always activate your environment before running any scripts [web:6]
-> - Add `venv/` to your `.gitignore` file to avoid committing environment files [web:9]
-> - Apple Silicon users automatically use MPS acceleration if available [file:1]
-> - NVIDIA users will use CUDA if properly installed [file:1]
+> ** Important Notes:**
+> - Always activate your environment before running any scripts  
+> - Add `venv/` to your `.gitignore` file to avoid committing environment files  
+> - Apple Silicon users automatically use MPS acceleration if available  
+> - NVIDIA users will use CUDA if properly installed  
 
 ---
 
@@ -159,7 +159,7 @@ deactivate
 ### Source
 - **File**: `Wafer_Map_Datasets.npz`
 - **Total Samples**: ~38,000 wafers
-- **Class Distribution**: ~95% Defected, <5% Clean [file:1]
+- **Class Distribution**: ~95% Defected, <5% Clean  
 
 ### Structure
 
@@ -168,7 +168,7 @@ deactivate
 | `arr_0`| Wafer maps (2D integer grids)        |
 | `arr_1`| Defect annotations (multi-label)     |
 
-Each wafer map is a sparse categorical matrix [file:1]:
+Each wafer map is a sparse categorical matrix  :
 
 | Value | Meaning        |
 |------:|----------------|
@@ -214,7 +214,7 @@ DEEPTECH/
 python -m src.train
 ```
 
-Trains DINOv2 on balanced wafer dataset [file:1]. Model checkpoints are saved to `./hackathon_model/` [file:1].
+Trains DINOv2 on balanced wafer dataset  . Model checkpoints are saved to `./hackathon_model/`  .
 
 ### Evaluate Performance
 
@@ -222,7 +222,7 @@ Trains DINOv2 on balanced wafer dataset [file:1]. Model checkpoints are saved to
 python src/generate_results.py
 ```
 
-Generates comprehensive evaluation metrics and confusion matrix [file:1]. Results are saved to `results/` [file:1].
+Generates comprehensive evaluation metrics and confusion matrix  . Results are saved to `results/`  .
 
 ### Generate Figures
 
@@ -230,7 +230,7 @@ Generates comprehensive evaluation metrics and confusion matrix [file:1]. Result
 python src/generate_figures.py
 ```
 
-Creates ROC curves, confidence histograms, and visualization plots [file:1].
+Creates ROC curves, confidence histograms, and visualization plots  .
 
 ### Run Production Demo
 
@@ -238,7 +238,7 @@ Creates ROC curves, confidence histograms, and visualization plots [file:1].
 python demo/demo.py
 ```
 
-Launches live wafer streaming simulation with dual-view rendering [file:1]. Predictions are archived to `demo/assets/` [file:1].
+Launches live wafer streaming simulation with dual-view rendering  . Predictions are archived to `demo/assets/`  .
 
 ### Single Wafer Inference
 
@@ -246,26 +246,26 @@ Launches live wafer streaming simulation with dual-view rendering [file:1]. Pred
 python src/inference.py --random
 ```
 
-Performs inference on a randomly selected wafer from the test set [file:1].
+Performs inference on a randomly selected wafer from the test set  .
 
 ---
 
 ## Model Architecture
 
 ### Backbone
-- **Model**: `facebook/dinov2-base` [file:1]
-- **Architecture**: Vision Transformer (ViT) [file:1]
-- **Training Paradigm**: Self-Supervised Learning (DINO) [file:1]
+- **Model**: `facebook/dinov2-base`  
+- **Architecture**: Vision Transformer (ViT)  
+- **Training Paradigm**: Self-Supervised Learning (DINO)  
 
 ### Why DINOv2?
-DINOv2 excels at wafer map defect analysis because it [file:1]:
+DINOv2 excels at wafer map defect analysis because it  :
 - Learns **global structural features**
 - Avoids over-reliance on local texture
 - Excels at **non-local pattern detection**
 
 ### Classification Head
-- Linear layer on the `[CLS]` token [file:1]
-- Output: 2 logits → Clean / Defected [file:1]
+- Linear layer on the `[CLS]` token  
+- Output: 2 logits → Clean / Defected  
 
 ### Training Configuration
 
@@ -278,7 +278,7 @@ DINOv2 excels at wafer map defect analysis because it [file:1]:
 | Epochs           | 3              |
 | Hardware         | MPS / CUDA     |
 
-*A low learning rate preserves pretrained DINOv2 representations while adapting to domain-specific patterns* [file:1].
+*A low learning rate preserves pretrained DINOv2 representations while adapting to domain-specific patterns*  .
 
 ---
 
@@ -294,55 +294,55 @@ DINOv2 excels at wafer map defect analysis because it [file:1]:
 | F1 Score                               | 1.0000  |
 | Matthews Correlation Coefficient (MCC) | 1.0000  |
 
-**Primary metric**: MCC, due to robustness under class imbalance [file:1].
+**Primary metric**: MCC, due to robustness under class imbalance  .
 
 ### Diagnostic Outputs
-- Confusion Matrix (zero misclassifications) [file:1]
-- ROC Curve (AUC = 1.00) [file:1]
-- Prediction confidence histograms [file:1]
+- Confusion Matrix (zero misclassifications)  
+- ROC Curve (AUC = 1.00)  
+- Prediction confidence histograms  
 
-All artifacts are stored in `results/` [file:1].
+All artifacts are stored in `results/`  .
 
 ---
 
 ## Performance Benchmark
 
-**Hardware**: Apple M4 MacBook Air (MPS) [file:1]
+**Hardware**: Apple M4 MacBook Air (MPS)  
 
 | Metric            | Value          |
 | ----------------- | -------------- |
 | Inference Latency | ~29 ms / wafer |
 | Throughput        | ~34 FPS        |
 
-Suitable for **near real-time production screening** [file:1].
+Suitable for **near real-time production screening**  .
 
 ### Robustness Stress Testing
 
-Gaussian noise injection during inference [file:1]:
-- Accuracy remained >99% up to σ ≈ 0.1–0.2 [file:1]
-- Confirms reliance on **structural patterns** rather than pixel artifacts [file:1]
+Gaussian noise injection during inference  :
+- Accuracy remained >99% up to σ ≈ 0.1–0.2  
+- Confirms reliance on **structural patterns** rather than pixel artifacts  
 
 ---
 
 ## Limitations
 
-- Operates on wafer map data (not raw microscopy) [file:1]
-- Binary classification only [file:1]
-- Dataset-specific preprocessing [file:1]
-- Generalization may vary across fabs and processes [file:1]
+- Operates on wafer map data (not raw microscopy)  
+- Binary classification only  
+- Dataset-specific preprocessing  
+- Generalization may vary across fabs and processes  
 
 ---
 
 ## Acknowledgements
 
-This project makes use of publicly available wafer map datasets from the following repositories [file:1]:
+This project makes use of publicly available wafer map datasets from the following repositories:
 
 - **WaferMap (MixedWM38 Dataset)**  
   Repository: [https://github.com/Junliangwangdhu/WaferMap](https://github.com/Junliangwangdhu/WaferMap)  
-  Provides wafer map data with multiple single and mixed defect patterns [file:1].
+  Provides wafer map data with multiple single and mixed defect patterns.
 
-These datasets were used **strictly for research and educational purposes** [file:1].  
-All rights and credits belong to the original authors and contributors [file:1].
+These datasets were used **strictly for research and educational purposes**.  
+All rights and credits belong to the original authors and contributors .
 
 ---
 
@@ -356,7 +356,7 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a Pull Request
 
-For major changes, please open an issue first to discuss proposed changes [web:11].
+For major changes, please open an issue first to discuss proposed changes.
 
 ---
 
@@ -366,39 +366,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Contact
 
-**Project Maintainer**: [Your Name]  
-**Email**: your.email@example.com  
-**Project Link**: [https://github.com/yourusername/siliconsight](https://github.com/yourusername/siliconsight)
 
----
-
-<div align="center">
-  <sub>Built with ❤️ for the semiconductor industry</sub>
-</div>
-```
-
-## Key Improvements
-
-This industry-standard README incorporates: [github](https://github.com/RichardLitt/standard-readme)
-
-### Structure Enhancements
-- **Table of Contents** for easy navigation [hatica](https://www.hatica.io/blog/best-practices-for-github-readme/)
-- **Badges** showing Python version, framework, and license compatibility [github](https://github.com/RichardLitt/standard-readme)
-- **Clear sections** following the Diátaxis framework (learning, problem-solving, information, understanding) [realpython](https://realpython.com/python-project-documentation-with-mkdocs/)
-
-### Virtual Environment Section
-- **Step-by-step instructions** for all major operating systems [oneuptime](https://oneuptime.com/blog/post/2026-01-24-create-virtual-environments-python/view)
-- **Verification command** to check installation success [oneuptime](https://oneuptime.com/blog/post/2026-01-24-create-virtual-environments-python/view)
-- **Best practices** prominently displayed (gitignore, activation reminders) [codefixeshub](https://www.codefixeshub.com/programming/python-virtual-environment-best-practices-a-compre)
-- **Hardware acceleration** detection included in verification [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/72371279/8b87df89-9f13-499e-b273-5d9c3094fdfb/README-10.md)
-
-### Professional Features
-- **Features section** with checkmarks highlighting key capabilities [hatica](https://www.hatica.io/blog/best-practices-for-github-readme/)
-- **Repository structure** with inline comments explaining each directory [github](https://github.com/RichardLitt/standard-readme)
-- **Contributing guidelines** to encourage open-source collaboration [realpython](https://realpython.com/documenting-python-code/)
-- **Contact information** section for maintainer details [hatica](https://www.hatica.io/blog/best-practices-for-github-readme/)
-- **Consistent formatting** using tables, code blocks, and proper Markdown hierarchy [hatica](https://www.hatica.io/blog/best-practices-for-github-readme/)
-
-The virtual environment setup is now prominently integrated into the Installation section with platform-specific commands, following 2026 best practices. [purpletutor](https://purpletutor.com/python-virtual-environment-best-practices/)
