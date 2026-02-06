@@ -92,7 +92,7 @@ To ensure dependency isolation and reproducibility, this project should be run i
 ```bash
 git clone https://github.com/yourusername/siliconsight.git
 cd siliconsight
-
+```
 
 #### Step 2: Create a Virtual Environment
 
