@@ -222,11 +222,11 @@ ConvBiasReLU(x)
 - Cache efficiency: Data stays in GPU cache
 
 #### Quantization (FP32 → INT8)
-
+$$
 \[
 x_{\text{int8}} = \text{round}\left(\frac{x_{\text{fp32}}}{s}\right) + z
 \]
-
+$$
 Where:
 - \(s\): Scale factor
 - \(z\): Zero-point offset
