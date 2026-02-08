@@ -1,10 +1,12 @@
 # Silicon Sight: Automated Semiconductor Defect Detection
 
-###**Vision Transformer-Based Semiconductor Wafer Inspection System**
+**Autonomous Semiconductor Wafer Defect Detection using Vision Transformers**
 
-[ Quick Start](#quick-start) -  [ Architecture](#system-architecture) -  [ Results](#results) -  [Technical Deep Dive](#advanced-technical-deep-dive)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-***
+--- 
 
 ##  Table of Contents
 
