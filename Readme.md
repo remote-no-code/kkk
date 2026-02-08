@@ -102,21 +102,21 @@ Output: Class + Confidence Score
 #### The CNN Limitation
 
 Standard CNNs use convolutions with local receptive fields:
-
+$$
 \[
 Y(i,j) = \sum_{m} \sum_{n} X(i+m, j+n) \cdot W(m,n)
 \]
-
+$$
 **Problem**: This operation is local. A pixel at position (0,0) has no information about pixel (224,224) until very deep layers. For semiconductor defects that span the entire wafer (scratches, cracks), CNNs may see disconnected segments.
 
 #### The Transformer Solution
 
 Vision Transformers use Self-Attention for global context:
-
+$$
 \[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 \]
-
+$$
 **Key Components**:
 - **Q (Query)**: "What am I looking for?"
 - **K (Key)**: "What features do I have?"
@@ -135,11 +135,11 @@ Vision Transformers use Self-Attention for global context:
 2. Pass through Student and Teacher networks
 
 3. **Objective**: Student predictions match Teacher predictions
-
+$$
 \[
 \mathcal{L}_{\text{DINO}} = - \sum_{x \in \{x_1, x_2\}} \sum_{i} P_{\text{teacher}}^{(i)} \log P_{\text{student}}^{(i)}
 \]
-
+$$
 **Why This Matters**:
 - **Part-Whole Understanding**: Model learns that small curves (local view) belong to circular particles (global view)
 - **Texture Discrimination**: Distinguishes harmless patterns from structural defects
@@ -148,11 +148,11 @@ Vision Transformers use Self-Attention for global context:
 ### 3. Training Dynamics
 
 #### Loss Function: Cross-Entropy
-
+$$
 \[
 \mathcal{L}_{\text{CE}} = - \sum_{c=1}^{C} y_{c} \log(p_{c})
 \]
-
+$$
 Where:
 - \(y_c\): Ground truth (one-hot encoded)
 - \(p_c\): Predicted probability for class c
@@ -161,11 +161,11 @@ Where:
 **Interpretation**: Penalizes confident wrong predictions exponentially.
 
 #### Optimizer: AdamW
-
+$$
 \[
 \theta_{t+1} = \theta_t - \eta \left( \frac{m_t}{\sqrt{v_t} + \epsilon} + \lambda \theta_t \right)
 \]
-
+$$
 Where:
 - \(m_t\): First moment (momentum)
 - \(v_t\): Second moment (adaptive learning rate)
